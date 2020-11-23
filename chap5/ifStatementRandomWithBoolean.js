@@ -1,9 +1,8 @@
 let num = Math.round(Math.random() * 100);
 console.log("現在の値：" + num);
-let cond = (num <= 40)
-if(cond) {
-  console.log("below 40");
+if((num % 2 === 0) && (num % 3 === 0)) {
+  console.log("2 & 3");
 } else {
-  console.log("OVER 50");
-}
+  console.log("fuck");
+};
 console.log("DONE!!!!");
