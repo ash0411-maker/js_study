@@ -35,3 +35,17 @@ class Child extends Parent {
 const child = new Child("引数1", "引数2");
 // "Parentコンストラクタの処理", "引数1", "引数2"
 // "Childコンストラクタの処理", "引数1", "引数2"
+
+
+
+// コンストラクタの処理順は親クラスから子クラスへ
+// コンストラクタの処理順は、親クラスから子クラスへと順番が決まっています。
+// class構文では必ず親クラスのコンストラクタ処理（super()の呼び出し）を先に行い、その次に子クラスのコンストラクタ処理を行います。 
+// 子クラスのコンストラクタでは、thisを触る前にsuper()で親クラスのコンストラクタ処理を呼び出さないとReferenceErrorとなるためです。
+
+
+
+// プロパティを参照する場合には次のような順番でオブジェクトを探索しています。
+// instanceオブジェクト自身
+// Child.prototype（instanceオブジェクトの[[Prototype]]の参照先）
+// Parent.prototype（Child.prototypeオブジェクトの[[Prototype]]の参照先）
