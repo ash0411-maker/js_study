@@ -1,3 +1,6 @@
+// 次のコードではsetTimeout関数を使って10ミリ秒後に、1秒間ブロックする処理を実行しています。 
+// setTimeout関数でタイマーに登録したコールバック関数は非同期的なタイミングで呼ばれます。 
+// そのためsetTimeout関数の次の行に書かれている同期的処理は、非同期処理よりも先に実行されます。
 function blockTime(timeout) {
   const startTime = Date.now();
   while (true) {
@@ -16,6 +19,8 @@ setTimeout(() => {
 }, 10);
 // ブロックする処理は非同期なタイミングで呼び出されるので、次の行が先に実行される
 console.log("2. 同期的な処理を実行します");
+
+
 
 
 
