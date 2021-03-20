@@ -34,3 +34,30 @@ const onRejected = () => {
 };
 // `then`メソッドで成功時と失敗時に呼ばれるコールバック関数を登録
 promise.then(onFulfilled, onRejected);
+
+// Promiseのthenメソッドやcatchメソッドによる処理がわかったところで、Promiseインスタンスの状態について整理していきます。
+// Promiseインスタンスには、内部的に次の3つの状態が存在します。
+// Fulfilled
+// resolve（成功）したときの状態。このときonFulfilledが呼ばれる
+// Rejected
+// reject（失敗）または例外が発生したときの状態。このときonRejectedが呼ばれる
+// Pending
+// FulfilledまたはRejectedではない状態
+// new Promiseでインスタンスを作成したときの初期状態
+// これらの状態はECMAScriptの仕様として決められている内部的な状態です。 しかし、この状態をPromiseのインスタンスから取り出す方法はありません。 そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役立ちます。
+// Promiseインスタンスの状態は作成時にPendingとなり、一度でもFulfilledまたはRejectedへ変化すると、それ以降状態は変化しなくなります。 そのため、FulfilledまたはRejectedの状態であることをSettled（不変）と呼びます。
+// 一度でもSettled（FulfilledまたはRejected）となったPromiseインスタンスは、それ以降別の状態には変化しません。 そのため、resolveを呼び出した後にrejectを呼び出しても、そのPromiseインスタンスは最初に呼び出したresolveによってFulfilledのままとなります。
+// 次のコードでは、rejectを呼び出しても状態が変化しないため、thenで登録したonRejectedのコールバック関数は呼び出されません。 thenメソッドで登録したコールバック関数は、状態が変化した場合に一度だけ呼び出されます。
+
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve();
+    reject(new Error("エラー")) //すでにresolveされているからエラーになる
+  }, 16);
+})
+promise.then(() => {
+  console.log("Fulfilledとなった");
+}, (error) => {
+  // この行は呼び出されない
+});
