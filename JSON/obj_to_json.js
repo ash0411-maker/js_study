@@ -21,3 +21,18 @@ const replacer = (key, value) => {
     return value;
 };
 console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
+
+
+// 第三引数はspace引数とも呼ばれ、変換後のJSON形式の文字列を読みやすくフォーマットする際のインデントを設定できます。 
+// 数値を渡すとその数値分の長さのスペースで、文字列を渡すとその文字列でインデントされます。 
+// 次のコードはスペース2個でインデントされたJSONを得る例です。
+
+const obj = { id: 1, name: "js-primer" };
+// replacer引数を使わない場合はnullを渡して省略するのが一般的です
+console.log(JSON.stringify(obj, null, 2));
+/*
+{
+   "id": 1,
+   "name": "js-primer"
+}
+*/
