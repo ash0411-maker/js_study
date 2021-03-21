@@ -20,3 +20,17 @@ console.log(map.get("key")); // => "value2"
 // キーの存在確認
 console.log(map.has("key")); // => true
 console.log(map.has("foo")); // => false
+
+
+// deleteメソッドはマップから要素を削除します。 
+// deleteメソッドに渡されたキーと、そのキーにひもづいた値がマップから削除されます。 
+// また、マップが持つすべての要素を削除するためのclearメソッドがあります。
+
+const map = new Map();
+map.set("key1", "value1");
+map.set("key2", "value2");
+console.log(map.size); // => 2
+map.delete("key1");
+console.log(map.size); // => 1
+map.clear();
+console.log(map.size); // => 0
